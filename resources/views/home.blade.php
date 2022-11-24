@@ -12,7 +12,7 @@
 </head>
 <body>
     
-    <form action="submittudo" method="post">
+    <form action="submittudo" method="post" onsubmit="return validateForm()">
         @csrf
         <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
@@ -28,6 +28,32 @@
         
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+
+      <script>
+        function validateForm() {
+            let name = $('#name').val();
+            let email = $('#email').val();
+            if (name == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+            var emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if(email.match(emailformat))
+            {
+                console.log('true');
+                alert("Valid email address!");
+                // document.form1.text1.focus();
+                return true;
+            }
+            else
+            {
+                console.log('false');
+                alert("You have entered an invalid email address!");
+                // document.form1.text1.focus();
+                return false;
+            }
+        }
+        </script>
 </body>
 
 
